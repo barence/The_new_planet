@@ -29,3 +29,13 @@ public class Energy : MonoBehaviour
     void DealDamage(float damageValue)
     {
         CurrentEnergy -= damageValue;
+    }
+
+
+
+
+    float CalculateEnergy()
+    {
+        return CurrentEnergy / MaxEnergy;
+    }
+}
