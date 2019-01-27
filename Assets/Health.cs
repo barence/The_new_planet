@@ -10,11 +10,11 @@ public class Health : MonoBehaviour
 
     public Slider Healthbar;
 
-    void Start()
+     void Start()
     {
         MaxHealth = 100f;
         CurrentHealth = MaxHealth;
-        // Use this for initialization
+    
 
         Healthbar.value = CalculateHealth();
     }
@@ -22,8 +22,16 @@ public class Health : MonoBehaviour
     void Update()
 
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
             DealDamage(10);
+        }
+        if (GameObject.Find("hunger Canvas").GetComponent<Hunger>().CurrentHunger == 0)
+        {
+            DealDamage(Time.deltaTime * 5f);
+            Healthbar.value = CalculateHealth();
+        }
+
         Healthbar.value = CalculateHealth();
     }
 

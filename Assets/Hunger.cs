@@ -24,11 +24,14 @@ public class Hunger : MonoBehaviour
 
     {
         if (Input.GetKeyDown(KeyCode.X))
-            DealDamage(10);
+        {
+            DealHunger(10);
+        }
+        DealHunger(Time.deltaTime/2.5f);
         Hungerbar.value = CalculateHunger();
     }
 
-    void DealDamage(float damageValue)
+    public void DealHunger(float damageValue)
     {
         CurrentHunger -= damageValue;
     }
@@ -38,6 +41,7 @@ public class Hunger : MonoBehaviour
 
     float CalculateHunger()
     {
+        CurrentHunger = Mathf.Clamp(CurrentHunger, 0, 100);
         return CurrentHunger / MaxHunger;
     }
 }
