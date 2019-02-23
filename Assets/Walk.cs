@@ -35,7 +35,7 @@ public class Walk : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("apple"))
         {
-            GameObject.Find("hunger Canvas").GetComponent<Hunger>().DealHunger(-10);
+            GameObject.Find("Canvas").GetComponent<Hunger>().DealHunger(-10);
             tickSource.Play();
             other.gameObject.SetActive(false);
         }
