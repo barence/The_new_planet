@@ -34,7 +34,7 @@ public class Health : MonoBehaviour
         Healthbar.value = CalculateHealth();
     }
 
-    void DealDamage(float damageValue)
+    public void DealDamage(float damageValue)
     {
         CurrentHealth -= damageValue;
         if (CurrentHealth <= 0)
@@ -42,16 +42,7 @@ public class Health : MonoBehaviour
             GameObject.Find("BOOM").GetComponent<Text>().canvasRenderer.SetAlpha(1);
         }
     }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("enemy"))
-        {
-            GameObject.Find("Canvas").GetComponent<Health>().DealDamage(-10);
-            
-        }
-    }
-
+      
     float CalculateHealth()
     {
 
