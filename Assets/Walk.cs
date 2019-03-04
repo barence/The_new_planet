@@ -6,7 +6,7 @@ public class Walk : MonoBehaviour {
 
     public AudioSource tickSource;
 
-    public float speed;
+    private float speed;
 
     private Rigidbody2D rb2D;
 
@@ -24,20 +24,27 @@ public class Walk : MonoBehaviour {
         rb2D.AddForce(movement * speed);
     }
 
-	// Update is called once per frame
-	void Update () {
-
+    // Update is called once per frame
+    void Update()
+    {
         tickSource = GetComponent<AudioSource>();
-
-	}
+        speed = 35;
+        float energy = GameObject.Find("Canvas").GetComponent<Energy>().CurrentEnergy;
+        if (energy > 0) 
+        {
+          if (Input.GetKey(KeyCode.LeftShift))
+                speed = 70;
+        }
+    }
+    
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("apple"))
         {
             GameObject.Find("Canvas").GetComponent<Hunger>().DealHunger(-10);
-            tickSource.Play();
-            other.gameObject.SetActive(false);
+            tickSource.Play(); 
+                    other.gameObject.SetActive(false);
         }
     }
 }

@@ -19,6 +19,7 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+        
         DealDamage(Time.deltaTime * -1);
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -39,6 +40,15 @@ public class Health : MonoBehaviour
         if (CurrentHealth <= 0)
         {
             GameObject.Find("BOOM").GetComponent<Text>().canvasRenderer.SetAlpha(1);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("enemy"))
+        {
+            GameObject.Find("Canvas").GetComponent<Health>().DealDamage(-10);
+            
         }
     }
 

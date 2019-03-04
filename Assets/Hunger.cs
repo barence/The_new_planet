@@ -20,10 +20,9 @@ public class Hunger : MonoBehaviour
         Hungerbar.value = CalculateHunger();
     }
 
-    void Update()
+    void Update() {
 
-    {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             DealHunger(10);
         }

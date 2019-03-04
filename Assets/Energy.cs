@@ -7,6 +7,7 @@ public class Energy : MonoBehaviour
 {
     public float CurrentEnergy { get; set; }
     public float MaxEnergy { get; set; }
+    public float Calculate { get; set; }
 
     public Slider Energybar;
 
@@ -19,10 +20,14 @@ public class Energy : MonoBehaviour
         Energybar.value = CalculateEnergy();
     }
 
-    void Update()
+    void Update() {
+        DealDamage(Time.deltaTime * -3);
+        
+            if (Input.GetKey(KeyCode.LeftShift))
+        {
+            DealDamage(0.5F);
 
-    {
-       
+        }
         Energybar.value = CalculateEnergy();
     }
 
@@ -36,6 +41,7 @@ public class Energy : MonoBehaviour
 
     float CalculateEnergy()
     {
+        CurrentEnergy = Mathf.Clamp(CurrentEnergy, 0, 100);
         return CurrentEnergy / MaxEnergy;
     }
 }
