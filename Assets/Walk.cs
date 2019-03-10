@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Walk : MonoBehaviour
 {
-
+   
     public AudioSource tickSource;
-
+    public Text wire_supply_text;
     private float speed;
+    private const int v = 1;
+    private int wire_count;
 
     private Rigidbody2D rb2D;
 
@@ -15,6 +18,8 @@ public class Walk : MonoBehaviour
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        wire_count = 0;
+        wire_supply_text.text = " " + wire_count.ToString();
     }
 
     void FixedUpdate()
@@ -50,13 +55,19 @@ public class Walk : MonoBehaviour
             tickSource.Play();
             other.gameObject.SetActive(false);
         }
+            if (other.gameObject.CompareTag("wire"))
+            {
+                other.gameObject.SetActive(false);
+            wire_count = wire_count + v;
+            wire_supply_text.text = " " + wire_count.ToString();
+        }
     }
     void OnCollisionEnter2D(Collision2D other)
-    { 
-    
+    {
+
         if (other.gameObject.CompareTag("enemy"))
         {
-            GameObject.Find("Canvas").GetComponent<Health>().DealDamage (5f);
+            GameObject.Find("Canvas").GetComponent<Health>().DealDamage(5f);
         }
     }
 }
