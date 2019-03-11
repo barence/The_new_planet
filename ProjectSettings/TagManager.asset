@@ -7,6 +7,9 @@ TagManager:
   - apple
   - enemy
   - wire
+  - pricky pear
+  - corn
+  - potato
   layers:
   - Default
   - TransparentFX

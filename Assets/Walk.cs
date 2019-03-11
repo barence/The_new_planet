@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Walk : MonoBehaviour
 {
-   
+    private float corn_time;
     public AudioSource tickSource;
     public Text wire_supply_text;
     private float speed;
@@ -43,8 +44,22 @@ public class Walk : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
                 speed = 70;
         }
-    }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            wire_count = wire_count - v;
+            wire_supply_text.text = " " + wire_count.ToString();
+        }
+        {
+          if (corn_time > 0)
+            {
+                corn_time -= Time.deltaTime * 200f;
+                GameObject.Find("Canvas").GetComponent<Hunger>().DealHunger(-0.025f);
+            }
 
+        }
+
+    }
+ 
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -55,12 +70,35 @@ public class Walk : MonoBehaviour
             tickSource.Play();
             other.gameObject.SetActive(false);
         }
-            if (other.gameObject.CompareTag("wire"))
-            {
+        if (other.gameObject.CompareTag("corn"))
+        {
+            corn_time = 1500;
+                tickSource.Play();
                 other.gameObject.SetActive(false);
+            
+        }
+        if (other.gameObject.CompareTag("pricky pear"))
+            {
+                GameObject.Find("Canvas").GetComponent<Hunger>().DealHunger(-15);
+            GameObject.Find("Canvas").GetComponent<Health>().DealDamage(5);
+                tickSource.Play();
+                other.gameObject.SetActive(false);
+        }
+        if (other.gameObject.CompareTag("potato"))
+        {
+            GameObject.Find("Canvas").GetComponent<Hunger>().DealHunger(-7.5f);
+            GameObject.Find("Canvas").GetComponent<Energy>().DealEnergy(-12.5f);
+            tickSource.Play();
+            other.gameObject.SetActive(false);
+        }
+            if (other.gameObject.CompareTag("wire"))
+        {
+            other.gameObject.SetActive(false);
             wire_count = wire_count + v;
             wire_supply_text.text = " " + wire_count.ToString();
         }
+
+
     }
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -70,4 +108,9 @@ public class Walk : MonoBehaviour
             GameObject.Find("Canvas").GetComponent<Health>().DealDamage(5f);
         }
     }
+
+    //wire_supply_text = Mathf.Clamp(wire_supply_text, 0, 100);
+       //return wire_supply_text / wire_count;
+    
 }
+

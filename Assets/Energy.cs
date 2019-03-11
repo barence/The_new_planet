@@ -21,17 +21,17 @@ public class Energy : MonoBehaviour
     }
 
     void Update() {
-        DealDamage(Time.deltaTime * -3);
+        DealEnergy(Time.deltaTime * -3);
         
             if (Input.GetKey(KeyCode.LeftShift))
         {
-            DealDamage(0.5F);
+            DealEnergy(0.5F);
 
         }
         Energybar.value = CalculateEnergy();
     }
 
-    void DealDamage(float damageValue)
+   public void DealEnergy(float damageValue)
     {
         CurrentEnergy -= damageValue;
     }
