@@ -107,12 +107,6 @@ public class Walk : MonoBehaviour
         {
             GameObject.Find("Canvas").GetComponent<Health>().DealDamage(5f);
         }
- 
-    }
-
-    void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
     }
 
     //wire_supply_text = Mathf.Clamp(wire_supply_text, 0, 100);
