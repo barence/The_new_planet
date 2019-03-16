@@ -38,6 +38,7 @@ public class Walk : MonoBehaviour
     {
         tickSource = GetComponent<AudioSource>();
         speed = 35;
+        
         float energy = GameObject.Find("Canvas").GetComponent<Energy>().CurrentEnergy;
         if (energy > 0)
         {
