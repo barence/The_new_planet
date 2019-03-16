@@ -14,7 +14,17 @@ public class ChangeVolume : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        NewMethod();
+
+    }
+
+    public void NewMethod()
+    {
         myMusic.volume = Volume.value;
-        
+    }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
     }
 }
