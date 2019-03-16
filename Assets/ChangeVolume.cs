@@ -6,15 +6,20 @@ using UnityEngine.UI;
 public class ChangeVolume : MonoBehaviour
 {
     public Slider Volume;
-    public AudioSource myMusic;
 
-
-
+    void Start() {
+        if (GameObject.Find("player") != null)
+        {
+            GameObject.Find("player").GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Volume");
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        myMusic.volume = Volume.value;
-        
+        if (Volume != null)
+        {
+            PlayerPrefs.SetFloat("Volume", Volume.value);
+        }
     }
 }

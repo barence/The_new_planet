@@ -4396,6 +4396,7 @@ GameObject:
   - component: {fileID: 533267677}
   - component: {fileID: 533267678}
   - component: {fileID: 533267673}
+  - component: {fileID: 533267679}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -4415,7 +4416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b50b924157b8464d891fe5c59907dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tickSource: {fileID: 0}
+  tickSource: {fileID: 533267678}
   wire_supply_text: {fileID: 1429961674}
 --- !u!61 &533267673
 BoxCollider2D:
@@ -4690,6 +4691,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &533267679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533267671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a390fb11b11224d56be545804b16a91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Volume: {fileID: 0}
+  myMusic: {fileID: 0}
 --- !u!1 &554895460
 GameObject:
   m_ObjectHideFlags: 0
