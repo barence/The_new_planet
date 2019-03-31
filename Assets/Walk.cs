@@ -6,21 +6,25 @@ using UnityEngine.UI;
 
 public class Walk : MonoBehaviour
 {
+
     private float corn_time;
     public AudioSource tickSource;
     public Text wire_supply_text;
     private float speed;
     private const int v = 1;
     private int wire_count;
-
+    private List<GameObject> deactivated_wire_game_objects = new List<GameObject>();
     private Rigidbody2D rb2D;
 
     // Use this for initialization
     void Start()
+
     {
         rb2D = GetComponent<Rigidbody2D>();
         wire_count = 0;
         wire_supply_text.text = " " + wire_count.ToString();
+        
+        
     }
 
     void FixedUpdate()
@@ -46,14 +50,27 @@ public class Walk : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            wire_count = wire_count - v;
+            
             wire_supply_text.text = " " + wire_count.ToString();
-        }
-        {
-          if (corn_time > 0)
+            if (deactivated_wire_game_objects.Count > 0)
             {
-                corn_time -= Time.deltaTime * 200f;
-                GameObject.Find("Canvas").GetComponent<Hunger>().DealHunger(-0.025f);
+                int last_wire_index = deactivated_wire_game_objects.Count - 1;
+                deactivated_wire_game_objects[last_wire_index].transform.position = GameObject.Find("player").transform.position + Vector3.right;
+                deactivated_wire_game_objects[last_wire_index].SetActive(true);
+                deactivated_wire_game_objects.RemoveAt(last_wire_index);
+                wire_count = wire_count - v;
+
+            }
+            
+
+
+
+
+
+            if (corn_time > 0)
+            {
+                        corn_time -= Time.deltaTime * 200f;
+                        GameObject.Find("Canvas").GetComponent<Hunger>().DealHunger(-0.025f);
             }
 
         }
@@ -91,11 +108,13 @@ public class Walk : MonoBehaviour
             tickSource.Play();
             other.gameObject.SetActive(false);
         }
-            if (other.gameObject.CompareTag("wire"))
+            if (other.gameObject.CompareTag("wire")) 
         {
             other.gameObject.SetActive(false);
+            deactivated_wire_game_objects.Add(other.gameObject);
             wire_count = wire_count + v;
             wire_supply_text.text = " " + wire_count.ToString();
+            
         }
 
 
@@ -103,14 +122,14 @@ public class Walk : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
 
-        if (other.gameObject.CompareTag("enemy"))
+        if (other.gameObject.CompareTag("enemy")) 
         {
             GameObject.Find("Canvas").GetComponent<Health>().DealDamage(5f);
         }
     }
 
     //wire_supply_text = Mathf.Clamp(wire_supply_text, 0, 100);
-       //return wire_supply_text / wire_count;
+   // return wire_supply_text / wire_count;  
     
 }
 
