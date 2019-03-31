@@ -11,6 +11,9 @@ TagManager:
   - corn
   - potato
   - bottle
+  - log
+  - rock
+  - scrap
   layers:
   - Default
   - TransparentFX
