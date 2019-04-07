@@ -14,6 +14,7 @@ TagManager:
   - log
   - rock
   - scrap
+  - larry
   layers:
   - Default
   - TransparentFX
