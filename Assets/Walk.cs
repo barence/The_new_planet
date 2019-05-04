@@ -67,12 +67,16 @@ public class Walk : MonoBehaviour
     void Update()
     {
         tickSource = GetComponent<AudioSource>();
-        speed = 35;
+        speed = 10;
         float energy = GameObject.Find("Canvas").GetComponent<Energy>().CurrentEnergy;
         if (energy > 0)
         {
             if (Input.GetKey(KeyCode.LeftShift))
-                speed = 70;
+                speed = 20;
+        }
+        {
+            if (Input.GetKey(KeyCode.Insert))
+                speed = 500;
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
