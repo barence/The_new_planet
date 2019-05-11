@@ -26,7 +26,7 @@ public class Hunger : MonoBehaviour
         {
             DealHunger(10);
         }
-        DealHunger(Time.deltaTime/2.5f);
+        DealHunger(Time.deltaTime/0.5f);
         Hungerbar.value = CalculateHunger();
     }
 

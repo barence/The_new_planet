@@ -28,7 +28,12 @@ public class Energy : MonoBehaviour
             DealEnergy(0.5F);
 
         }
-        Energybar.value = CalculateEnergy();
+        Energybar.value = CalculateEnergy(); 
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+            DealEnergy(5);
+
+            }
     }
 
    public void DealEnergy(float damageValue)

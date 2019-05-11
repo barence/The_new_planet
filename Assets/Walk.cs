@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Walk : MonoBehaviour
-{
+
+public class Walk : MonoBehaviour { 
+    public Animator animator;
+
 
     private List<GameObject> deactivated_log_game_objects = new List<GameObject>();
     private List<GameObject> deactivated_scrap_game_objects = new List<GameObject>();

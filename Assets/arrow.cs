@@ -7,27 +7,27 @@ public class arrow : MonoBehaviour
 
     public float rotSpeed = 150f;
 
-    Transform larry;
+    Transform astro_dude;
 
     void Update()
     {
-        if (larry == null)
+        if (astro_dude == null)
         {
 
-           // GameObject.Find("player").transform.position + Vector3.right * 2;
+           
 
-            GameObject go = GameObject.Find("larry");
+            GameObject go = GameObject.Find("astro_dude");
 
             if (go != null)
             {
-                larry = go.transform;
+                astro_dude = go.transform;
             }
         }
 
-        if (larry == null)
+        if (astro_dude == null)
             return;
 
-        Vector3 dir = larry.position - transform.position;
+        Vector3 dir = astro_dude.position - transform.position;
         dir.Normalize();
 
         float zAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 360;
